@@ -1,0 +1,7 @@
+.character-gallery{
+    margin: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding-top: 50px;
+}

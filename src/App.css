@@ -1,10 +1,18 @@
 .App {
+  color: white;
   text-align: center;
+  background-image: url("https://images.unsplash.com/photo-1598046147932-c78b6d9c0905?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*   {
+  margin:0;
+  padding:0;
+}
+
+h1{
+  font-size: 300%;
+  padding: 1%;
+  color: #61dafb;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,7 +23,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 0vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,3 +44,38 @@
     transform: rotate(360deg);
   }
 }
+
+.likebutton{
+  font-size: 50px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.wordart {
+  padding-top: 50px;
+  font-family: Arial, sans-serif;
+  font-size: 4em;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wordart.blues .text {
+  padding-top: 50px;
+  font-family: Impact, sans-serif;
+  color: aqua;
+  -webkit-text-stroke: 0.01em hotpink;
+  filter: progid:DXImageTransform.Microsoft.Glow(Color=#0000aa,Strength=1);
+  text-shadow: 0.13em -0.13em 0px deeppink;
+  letter-spacing: -0.05em;
+
+}
+
+

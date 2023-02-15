@@ -1,0 +1,17 @@
+.character-card{
+    width: 200px;
+    height: 100%;
+    margin: 1%;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 50px;
+    box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.75);
+    background-color: aqua;
+    color: hotpink;
+}
+
+.character-card-image{
+    width: 90%;
+    height: auto;
+    border-radius: 50%;
+}
