@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -9,11 +9,17 @@ import "./inputuser/inputUser";
 import inputUser from "./inputuser/inputUser";
 import InputUser from "./inputuser/inputUser";
 import UserSearchFunction from "./component/UserSearchFunction";
+import "./data/video.mp4";
+import axios from "axios";
+
 
 
 function App() {
 
-  const characters: Character[] = Characters;
+    const[characters, setCharacters] = useState<Character[]>([])
+  //const characters: Character[] = Characters;
+
+    const [joke, setJoke] = useState();
 
   const[count, setCount] = useState(0);
 
@@ -39,13 +45,49 @@ function App() {
       setSearch(search);
   }
 
+  function loadCharacters(){
+      axios.get("https://rickandmortyapi.com/api/character")
+          .then((response )=>{
+              console.log(response)
+              setCharacters(response.data.results)})
+          .catch((error) => console.error(error))
+  }
+
+  function loadJoke(){
+      axios.get("https://official-joke-api.appspot.com/random_joke?type=programming")
+          .then((response) =>{
+              setJoke(response.data.setup + response.data.punchline)
+          })
+          .catch((error) => console.error(error))
+  }
+
+  useEffect(() => {
+      loadCharacters();
+      console.log("CHARACTER LOADED")
+
+  },  [])
+
+
+
+    useEffect(()=> {
+      loadJoke()
+
+    },[]);
+
+
+
   return (
       <div className="App">
+
+
+
           <div className="wordart blues"><span className="text">{text}</span></div>
           <br/>
+          <h1 style={{fontSize: 20}}>{joke}</h1>
           <img style={{ marginRight: "40px" }} src={"https://media.tenor.com/S86Hms_11gYAAAAi/golden-retriever-arf-arf.gif"}/>
-          <div className="wordart blues"><span className="text">Like Counter:  {count}</span></div>
+          <div style={{fontSize: 45}} className="wordart blues"><span className="text">Like Counter:  {count}</span></div>
           <img style={{  }} width={200} height={150}  src={"https://bestanimations.com/media/mammals/943801475funny-oder-animated-gif.gif"}/>
+          <br/>
           <br/>
           <button style={{ marginRight: "20px" }} className="likebutton" onClick={like}>👍</button>
           <button className="likebutton" onClick={dislike}>👎</button>
@@ -59,10 +101,16 @@ function App() {
               <text style={{color: "cyan", fontSize: 20, fontFamily: "monospace"}}>Search: </text>
               <UserSearchFunction setSearch={handleSearch}/>
           </p>
+          <br/>
           <p>
+              <button className={"buttonclass"} onClick={loadCharacters}>Reload Characters</button>
+              <button className={"buttonclass"} style={{ marginLeft: "10px" }} onClick={loadJoke}>Load another Joke</button>
+
           </p>
 
-          <CharacterGallery characters={characters} userinput={search}/>
+
+          <CharacterGallery characters={characters} userinput={search}></CharacterGallery>
+
       </div>
   );
 }
