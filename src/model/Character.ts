@@ -6,4 +6,11 @@ export type Character = {
     origin: Origin,
     status: string,
     image: string,
+    species: string,
+    type: string,
+    gender: string,
+    location: string[],
+    episode: string[],
+    url: string
+
 }
